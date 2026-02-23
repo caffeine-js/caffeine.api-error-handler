@@ -1,5 +1,5 @@
 {
-    "name": "caffeine.api-error-handler",
+    "name": "@caffeine/api-error-handler",
     "version": "0.0.0",
     "type": "module",
     "author": {
@@ -55,5 +55,8 @@
     "peerDependencies": {
         "typescript": "^5"
     },
-    "dependencies": {}
+    "dependencies": {
+        "elysia": "^1.4.25",
+        "@caffeine/errors": "link:@caffeine/errors"
+    }
 }
