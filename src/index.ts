@@ -25,6 +25,7 @@ const STATUS_CODE_MAP: CaffeineExceptionRecords<number> = {
 		OperationNotAllowedException: 502,
 		ResourceNotFoundException: 404,
 		UnexpectedCacheValueException: 500,
+		MissingPluginDependencyException: 503,
 	},
 	internal: {
 		InvalidEntityData: 500,
