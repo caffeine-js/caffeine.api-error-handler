@@ -51,8 +51,8 @@ export const CaffeineErrorHandler = new Elysia().on(
 
 		set.status = status ?? 500;
 
-		const { message, name, source } = error;
+		const { message, name, source, [ExceptionLayer]: layer } = error;
 
-		return { message, name, source };
+		return { message, name, source, layer };
 	},
 );
