@@ -34,26 +34,28 @@ const STATUS_CODE_MAP: CaffeineExceptionRecords<number> = {
 	},
 };
 
-export const CaffeineErrorHandler = new Elysia().on(
-	"error",
-	({ code, set, error: _error }) => {
-		if (!(_error instanceof CoreException)) {
-			const { message, name }: Error = _error;
+export const CaffeineErrorHandler = new Elysia({
+	name: "@caffeine/api-error-handler",
+}).onError({ as: "global" }, ({ code, set, error: _error }) => {
+	if (!(_error instanceof CoreException)) {
+		const err = _error as Error;
+		const message = err.message || String(_error);
+		const name = err.name || "Error";
 
-			return { name, message, code };
-		}
+		return { name, message, code };
+	}
 
-		const error: CoreException = _error;
+	const error: CoreException = _error;
 
-		const layerMap = STATUS_CODE_MAP[error[ExceptionLayer]] as unknown as {
-			[error.constructor.name]: number;
-		};
-		const status = layerMap ? layerMap[error.constructor.name] : 500;
+	const layerMap = STATUS_CODE_MAP[error[ExceptionLayer]] as Record<
+		string,
+		number
+	>;
+	const status = layerMap ? layerMap[error.constructor.name] : 500;
 
-		set.status = status ?? 500;
+	set.status = status ?? 500;
 
-		const { message, name, source, [ExceptionLayer]: layer } = error;
+	const { message, name, source, [ExceptionLayer]: layer } = error;
 
-		return { message, name, source, layer };
-	},
-);
+	return { message, name, source, layer };
+});
