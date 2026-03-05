@@ -1,63 +1,73 @@
 {
-    "name": "@caffeine/api-error-handler",
-    "version": "0.0.0",
-    "type": "module",
-    "author": {
-        "name": "Alan Reis",
-        "email": "alanreisanjo@gmail.com",
-        "url": "https://hoyasumii.dev"
-    },
-    "main": "./dist/index.cjs",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "typesVersions": {
-        "*": {
-            "*": [
-                "./dist/*/index.d.ts"
-            ]
-        }
-    },
-    "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "require": "./dist/index.cjs"
-        },
-        "./*": {
-            "types": "./dist/*/index.d.ts",
-            "import": "./dist/*/index.js",
-            "require": "./dist/*/index.cjs"
-        }
-    },
-    "files": [
-        "dist"
-    ],
-    "scripts": {
-        "build": "tsup 'src/**/index.ts' --format cjs,esm --dts --tsconfig tsconfig.build.json --clean",
-        "test:unit": "vitest run",
-        "test:ui": "vitest --ui",
-        "test:coverage": "vitest run --coverage",
-        "setup": "bun run build && bun link",
-        "prepare": "husky"
-    },
-    "devDependencies": {
-        "@faker-js/faker": "^10.2.0",
-        "@types/bun": "latest",
-        "@vitest/coverage-v8": "^4.0.18",
-        "@vitest/ui": "^4.0.18",
-        "tsup": "^8.5.1",
-        "vite-tsconfig-paths": "^6.0.5",
-        "vitest": "^4.0.18",
-        "@commitlint/cli": "^20.4.1",
-        "@commitlint/config-conventional": "^20.4.1",
-        "husky": "^9.1.7",
-        "elysia": "^1.4.26"
-    },
-    "peerDependencies": {
-        "typescript": "^5",
-        "elysia": "^1.4.26"
-    },
-    "dependencies": {
-        "@caffeine/errors": "link:@caffeine/errors"
-    }
+	"name": "@roastery-capsules/api-error-handler",
+	"description": "Centralized API error handling and HTTP status code mapping for the Roastery CMS ecosystem.",
+	"version": "0.0.1",
+	"type": "module",
+	"author": {
+		"name": "Alan Reis",
+		"email": "alanreisanjo@gmail.com",
+		"url": "https://github.com/Hoyasumii"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/roastery-cms/terroir"
+	},
+	"license": "MIT",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"typesVersions": {
+		"*": {
+			"*": [
+				"./dist/*/index.d.ts"
+			]
+		}
+	},
+	"keywords": [
+		"hoyasumii",
+		"roastery",
+		"@roastery",
+		"terroir",
+		"@roastery/terroir",
+		"roastery-terroir"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
+		},
+		"./*": {
+			"types": "./dist/*/index.d.ts",
+			"import": "./dist/*/index.js",
+			"require": "./dist/*/index.cjs"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "biome check --fix && tsup 'src/**/index.ts' --format cjs,esm --dts --tsconfig tsconfig.build.json --clean",
+		"test:unit": "bun test --env-file=.env.testing",
+		"test:coverage": "bun test --env-file=.env.testing --coverage",
+		"setup": "bun run build && bun link",
+		"prepare": "husky || true",
+		"knip": "knip"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^20.4.1",
+		"@commitlint/config-conventional": "^20.4.1",
+		"husky": "^9.1.7",
+		"knip": "^5.85.0"
+	},
+	"peerDependencies": {
+		"@roastery/barista": "^0.0.5",
+		"@roastery/terroir": "^0.0.9",
+		"@sinclair/typebox": ">= 0.34.0 < 1",
+		"@types/bun": "latest",
+		"tsup": "^8.5.1",
+		"typescript": "^5",
+		"uuid": "^13.0.0"
+	},
+	"dependencies": {}
 }

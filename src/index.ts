@@ -1,9 +1,9 @@
-import { CoreException } from "@caffeine/errors/core";
-import { ExceptionLayer } from "@caffeine/errors/symbols";
-import type { CaffeineExceptionRecords } from "@caffeine/errors/types";
-import Elysia from "elysia";
+import { barista } from "@roastery/barista";
+import { CoreException } from "@roastery/terroir/exceptions/core";
+import { ExceptionLayer } from "@roastery/terroir/exceptions/symbols";
+import type { RoasteryExceptionRecords } from "@roastery/terroir/exceptions/types";
 
-const STATUS_CODE_MAP: CaffeineExceptionRecords<number> = {
+const STATUS_CODE_MAP: RoasteryExceptionRecords<number> = {
     domain: {
         InvalidDomainDataException: 400,
         InvalidPropertyException: 400,
@@ -36,7 +36,7 @@ const STATUS_CODE_MAP: CaffeineExceptionRecords<number> = {
     },
 };
 
-export const CaffeineErrorHandler = new Elysia({
+export const baristaErrorHandler = barista({
     name: "@caffeine/api-error-handler",
 }).onError({ as: "global" }, ({ code, set, error: _error }) => {
     if (!(_error instanceof CoreException)) {
