@@ -1,7 +1,7 @@
 {
 	"name": "@roastery-capsules/api-error-handler",
 	"description": "Centralized API error handling and HTTP status code mapping for the Roastery CMS ecosystem.",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"type": "module",
 	"author": {
 		"name": "Alan Reis",
