@@ -1,5 +1,4 @@
 import { describe, it, expect } from "bun:test";
-import Elysia from "elysia";
 import { baristaErrorHandler } from "./index";
 import {
 	BadRequestException,
@@ -31,14 +30,17 @@ import {
 	InvalidObjectValueException,
 	UnknownException,
 } from "@roastery/terroir/exceptions";
+import { barista } from "@roastery/barista";
 
 function createTestApp(error: unknown) {
-	return new Elysia().use(baristaErrorHandler).get("/test", () => {
-		throw error;
-	});
+	return barista()
+		.use(baristaErrorHandler)
+		.get("/test", () => {
+			throw error;
+		});
 }
 
-async function request(app: Elysia) {
+async function request(app: ReturnType<typeof createTestApp>) {
 	const response = await app.handle(new Request("http://localhost/test"));
 	const body = await response.json();
 	return { status: response.status, body };

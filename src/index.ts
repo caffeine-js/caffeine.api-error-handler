@@ -37,7 +37,7 @@ const STATUS_CODE_MAP: RoasteryExceptionRecords<number> = {
 };
 
 export const baristaErrorHandler = barista({
-	name: "@caffeine/api-error-handler",
+	name: "@roastery-capsules/api-error-handler",
 }).onError({ as: "global" }, ({ code, set, error: _error }) => {
 	if (!(_error instanceof CoreException)) {
 		const err = _error as Error;

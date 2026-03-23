@@ -1,7 +1,7 @@
 {
 	"name": "@roastery-capsules/api-error-handler",
 	"description": "Centralized API error handling and HTTP status code mapping for the Roastery CMS ecosystem.",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"type": "module",
 	"author": {
 		"name": "Alan Reis",
@@ -49,7 +49,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "biome check --fix && tsup 'src/**/index.ts' --format cjs,esm --dts --tsconfig tsconfig.build.json --clean",
+		"build": "knip && biome check --fix && tsup 'src/**/index.ts' --format cjs,esm --dts --tsconfig tsconfig.build.json --clean",
 		"test:unit": "bun test --env-file=.env.testing",
 		"test:coverage": "bun test --env-file=.env.testing --coverage",
 		"setup": "bun run build && bun link",
@@ -63,12 +63,12 @@
 		"knip": "^5.85.0"
 	},
 	"peerDependencies": {
-		"@roastery/barista": "^0.0.5",
-		"@roastery/terroir": "^0.0.9",
-		"@sinclair/typebox": ">= 0.34.0 < 1",
 		"@types/bun": "latest",
 		"tsup": "^8.5.1",
 		"typescript": "^5"
 	},
-	"dependencies": {}
+	"dependencies": {
+		"@roastery/barista": "^0.0.5",
+		"@roastery/terroir": "^0.0.9"
+	}
 }

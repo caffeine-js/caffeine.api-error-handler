@@ -1,1 +1,2 @@
-bun run test:unit && bun run test:coverage
+mise exec -- bun run test:unit
+mise exec -- bun run test:coverage
